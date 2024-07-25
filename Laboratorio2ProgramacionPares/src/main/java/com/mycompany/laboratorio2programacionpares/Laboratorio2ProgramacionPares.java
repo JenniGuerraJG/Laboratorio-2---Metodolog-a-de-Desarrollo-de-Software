@@ -18,10 +18,6 @@ public class Laboratorio2ProgramacionPares {
             System.out.println("2. Ingresar tiempos de los caballos");
             System.out.println("3. Mostrar el caballo ganador");
             System.out.println("4. Salir");
-            System.out.println("hola mundo");
-            System.out.println("hola mundo");
-            System.out.println("hola mundo");
-            System.out.println("holi c:");
             System.out.println("----------------------------------------------------------");
             menu = scann.nextInt();
             scann.nextLine(); 
