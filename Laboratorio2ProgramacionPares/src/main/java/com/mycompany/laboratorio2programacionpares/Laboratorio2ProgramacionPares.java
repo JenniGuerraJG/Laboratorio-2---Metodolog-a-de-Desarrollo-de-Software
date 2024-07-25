@@ -6,28 +6,39 @@ import java.util.Scanner;
 public class Laboratorio2ProgramacionPares {
 
     public static void main(String[] args) {
-        Scanner scann = new Scanner(System.in);
+       Scanner scann = new Scanner(System.in);
         int menu;
-        do{
-        System.out.println("----------------------------------------------------------");
-        System.out.println("   R E G I S T R O  C A R R E R A  D E  C A B A L L O S");
-        System.out.println("                           ---");
-        System.out.println("----------------------------------------------------------");
-        System.out.println("----------------------------------------------------------");
-        System.out.println("1. Registrar Caballo en la carrera");
-        System.out.println("2. Ganador de la carrera");
-        System.out.println("3. Salir ");
-        System.out.println("----------------------------------------------------------");
-        menu = scann.nextInt();
-        switch(menu){
-            case 1:
-                break;
-            case 2:
-                break;
-            default:
-               System.out.println("Ingrese una opcion correcta (1-3)");
-               break;
-        }
-        }while(menu !=3);
+
+        do {
+            System.out.println("----------------------------------------------------------");
+            System.out.println("   R E G I S T R O  C A R R E R A  D E  C A B A L L O S");
+            System.out.println("                           ---");
+            System.out.println("----------------------------------------------------------");
+            System.out.println("1. Registrar Caballo");
+            System.out.println("2. Ingresar tiempos de los caballos");
+            System.out.println("3. Mostrar el caballo ganador");
+            System.out.println("4. Salir");
+            System.out.println("----------------------------------------------------------");
+            menu = scann.nextInt();
+            scann.nextLine(); // Consumir el salto de línea
+
+            switch (menu) {
+                case 1:
+                    CaballoCarrera.registrarCaballo();
+                    break;
+                case 2:
+                    CaballoCarrera.ingresarTiempo();
+                    break;
+                case 3:
+                    CaballoCarrera.mostrarGanador();
+                    break;
+                case 4:
+                    System.out.println("Saliendo del programa...");
+                    break;
+                default:
+                    System.out.println("Ingrese una opción correcta (1-4)");
+                    break;
+            }
+        } while (menu != 4);
     }
 }
