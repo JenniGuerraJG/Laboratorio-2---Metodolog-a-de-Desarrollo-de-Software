@@ -77,11 +77,11 @@ public class Caballo implements metodosRegistrar {
 
     @Override
     public void registro() {
-        // Implementación del método registro
+        
     }
 
     @Override
     public void mostrarDetalles() {
-        // Implementación del método mostrarDetalles
+        
     }
 }

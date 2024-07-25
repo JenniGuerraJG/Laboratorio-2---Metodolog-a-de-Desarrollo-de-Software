@@ -24,7 +24,7 @@ public class CaballoCarrera {
 
     public void registrarTiempo() {
         Scanner scann = new Scanner(System.in);
-        System.out.println("Ingrese el tiempo del caballo número " + numero + " (formato minutos:segundos:milisegundos):");
+        System.out.println("Ingrese el tiempo del caballo numero " + numero + " (formato minutos:segundos:milisegundos):");
         tiempoCarrera = scann.nextLine();
         System.out.println("Tiempo registrado.");
     }
@@ -44,7 +44,7 @@ public class CaballoCarrera {
         String color = scann.nextLine();
         System.out.println("Ingrese el nombre del propietario:");
         String propietario = scann.nextLine();
-        System.out.println("Ingrese el número del caballo:");
+        System.out.println("Ingrese el numero del caballo:");
         int numero = scann.nextInt();
         scann.nextLine(); // Consumir el salto de línea
         Caballo nuevoCaballo = new Caballo(nombre, edad, raza, sexo, color, propietario, numero);
@@ -54,7 +54,7 @@ public class CaballoCarrera {
 
     public static void ingresarTiempo() {
         Scanner scann = new Scanner(System.in);
-        System.out.println("Ingrese el número del caballo para registrar el tiempo:");
+        System.out.println("Ingrese el numero del caballo para registrar el tiempo:");
         int numeroTiempo = scann.nextInt();
         scann.nextLine(); // Consumir el salto de línea
         boolean encontrado = false;
@@ -83,7 +83,7 @@ public class CaballoCarrera {
                         break;
                     }
                 }
-                System.out.println("El ganador es el caballo número " + ganador.getNumero() + " de color " + (caballoGanador != null ? caballoGanador.getColorCaballo() : "desconocido") + " con un tiempo de: " + ganador.getTiempoCarrera());
+                System.out.println("El ganador es el caballo numero " + ganador.getNumero() + " de color " + (caballoGanador != null ? caballoGanador.getColorCaballo() : "desconocido") + " con un tiempo de: " + ganador.getTiempoCarrera());
             } else {
                 System.out.println("No hay tiempos registrados.");
             }
