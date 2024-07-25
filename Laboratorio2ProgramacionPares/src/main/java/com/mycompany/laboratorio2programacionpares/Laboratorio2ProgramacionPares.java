@@ -21,7 +21,7 @@ public class Laboratorio2ProgramacionPares {
             System.out.println("hola mundo");
             System.out.println("hola mundo");
             System.out.println("hola mundo");
-            System.out.println("hola mundo");
+            System.out.println("holi c:");
             System.out.println("----------------------------------------------------------");
             menu = scann.nextInt();
             scann.nextLine(); 
