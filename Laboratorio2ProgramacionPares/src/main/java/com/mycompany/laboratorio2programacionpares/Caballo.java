@@ -1,21 +1,22 @@
-
 package com.mycompany.laboratorio2programacionpares;
 
 public class Caballo implements metodosRegistrar {
-    public String nombreCaballo;
-    public int edadCaballo;
-    public String razaCaballo;
-    public String sexoCaballo;
-    public String colorCaballo;
-    public String propietarioCaballo;
+    private String nombreCaballo;
+    private int edadCaballo;
+    private String razaCaballo;
+    private String sexoCaballo;
+    private String colorCaballo;
+    private String propietarioCaballo;
+    private int numeroCaballo;
 
-    public Caballo(String nombreCaballo, int edadCaballo, String razaCaballo, String sexoCaballo, String colorCaballo, String propietarioCaballo) {
+    public Caballo(String nombreCaballo, int edadCaballo, String razaCaballo, String sexoCaballo, String colorCaballo, String propietarioCaballo, int numeroCaballo) {
         this.nombreCaballo = nombreCaballo;
         this.edadCaballo = edadCaballo;
         this.razaCaballo = razaCaballo;
         this.sexoCaballo = sexoCaballo;
         this.colorCaballo = colorCaballo;
         this.propietarioCaballo = propietarioCaballo;
+        this.numeroCaballo = numeroCaballo;
     }
 
     public String getNombreCaballo() {
@@ -66,16 +67,21 @@ public class Caballo implements metodosRegistrar {
         this.propietarioCaballo = propietarioCaballo;
     }
 
+    public int getNumeroCaballo() {
+        return numeroCaballo;
+    }
+
+    public void setNumeroCaballo(int numeroCaballo) {
+        this.numeroCaballo = numeroCaballo;
+    }
+
     @Override
     public void registro() {
-       
+        // Implementación del método registro
     }
 
     @Override
     public void mostrarDetalles() {
-        
+        // Implementación del método mostrarDetalles
     }
-    
-    
-    
 }
