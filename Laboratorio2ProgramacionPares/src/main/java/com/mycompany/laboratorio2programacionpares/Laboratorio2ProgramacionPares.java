@@ -1,4 +1,3 @@
-
 package com.mycompany.laboratorio2programacionpares;
 
 import java.util.Scanner;
@@ -6,8 +5,8 @@ import java.util.Scanner;
 public class Laboratorio2ProgramacionPares {
 
     public static void main(String[] args) {
-       Scanner scann = new Scanner(System.in);
-        int menu;
+        Scanner scann = new Scanner(System.in);
+        int menu = 0;
 
         do {
             System.out.println("----------------------------------------------------------");
@@ -19,9 +18,20 @@ public class Laboratorio2ProgramacionPares {
             System.out.println("3. Mostrar el caballo ganador");
             System.out.println("4. Salir");
             System.out.println("----------------------------------------------------------");
-            menu = scann.nextInt();
-            scann.nextLine(); 
-
+            System.out.println("Seleccione una opcion: ");          
+            while (true) {
+                try {
+                    String entrada = scann.nextLine();
+                    menu = Integer.parseInt(entrada);
+                    if (menu < 1 || menu > 4) {
+                        System.out.println("Opcion erronea, ingrese una opcion entre 1 y 4: ");
+                    } else {
+                        break;
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Opcion erronea, ingrese una opcion entre 1 y 4: ");
+                }
+            }
             switch (menu) {
                 case 1:
                     CaballoCarrera.registrarCaballo();
@@ -34,9 +44,6 @@ public class Laboratorio2ProgramacionPares {
                     break;
                 case 4:
                     System.out.println("Saliendo del programa...");
-                    break;
-                default:
-                    System.out.println("Ingrese una opción correcta (1-4)");
                     break;
             }
         } while (menu != 4);
