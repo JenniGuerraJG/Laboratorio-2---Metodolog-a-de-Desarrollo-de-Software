@@ -82,6 +82,6 @@ public class Caballo implements metodosRegistrar {
 
     @Override
     public void mostrarDetalles() {
-        
+        System.out.println("Nombre: " + nombreCaballo + ", Edad: " + edadCaballo + ", Raza: " + razaCaballo + ", Sexo: " + sexoCaballo + ", Color: " + colorCaballo + ", Propietario: " + propietarioCaballo + ", Numero: " + numeroCaballo);
     }
 }

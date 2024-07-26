@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Laboratorio2ProgramacionPares {
 
     public static void main(String[] args) {
-        Scanner scann = new Scanner(System.in);
+       Scanner scann = new Scanner(System.in);
         int menu = 0;
 
         do {
@@ -16,20 +16,21 @@ public class Laboratorio2ProgramacionPares {
             System.out.println("1. Registrar Caballo");
             System.out.println("2. Ingresar tiempos de los caballos");
             System.out.println("3. Mostrar el caballo ganador");
-            System.out.println("4. Salir");
+            System.out.println("4. Ver todos los caballos registrados");
+            System.out.println("5. Salir");
             System.out.println("----------------------------------------------------------");
             System.out.println("Seleccione una opcion: ");          
             while (true) {
                 try {
                     String entrada = scann.nextLine();
                     menu = Integer.parseInt(entrada);
-                    if (menu < 1 || menu > 4) {
-                        System.out.println("Opcion erronea, ingrese una opcion entre 1 y 4: ");
+                    if (menu < 1 || menu > 5) {
+                        System.out.println("Opcion erronea, ingrese una opcion entre 1 y 5: ");
                     } else {
                         break;
                     }
                 } catch (NumberFormatException e) {
-                    System.out.println("Opcion erronea, ingrese una opcion entre 1 y 4: ");
+                    System.out.println("Opcion erronea, ingrese una opcion entre 1 y 5: ");
                 }
             }
             switch (menu) {
@@ -40,12 +41,15 @@ public class Laboratorio2ProgramacionPares {
                     CaballoCarrera.ingresarTiempo();
                     break;
                 case 3:
-                    CaballoCarrera.mostrarDetalles();
+                    CaballoCarrera.mostrarGanador();
                     break;
                 case 4:
+                    CaballoCarrera.mostrarTodosCaballos();
+                    break;
+                case 5:
                     System.out.println("Saliendo del programa...");
                     break;
             }
-        } while (menu != 4);
+        } while (menu != 5);
     }
 }

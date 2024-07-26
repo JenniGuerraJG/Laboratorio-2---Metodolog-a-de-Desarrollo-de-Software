@@ -4,13 +4,19 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CaballoCarrera extends Caballo {
+    private int numero;
     private String tiempoCarrera;
 
     private static ArrayList<Caballo> caballosRegistrados = new ArrayList<>();
     private static ArrayList<CaballoCarrera> caballosEnCarrera = new ArrayList<>();
 
-    public CaballoCarrera(String nombreCaballo, int edadCaballo, String razaCaballo, String sexoCaballo, String colorCaballo, String propietarioCaballo, int numeroCaballo) {
-        super(nombreCaballo, edadCaballo, razaCaballo, sexoCaballo, colorCaballo, propietarioCaballo, numeroCaballo);
+    public CaballoCarrera(int numero, String nombreCaballo, int edadCaballo, String razaCaballo, String sexoCaballo, String colorCaballo, String propietarioCaballo) {
+        super(nombreCaballo, edadCaballo, razaCaballo, sexoCaballo, colorCaballo, propietarioCaballo, numero);
+        this.numero = numero;
+    }
+
+    public int getNumero() {
+        return numero;
     }
 
     public String getTiempoCarrera() {
@@ -22,12 +28,12 @@ public class CaballoCarrera extends Caballo {
         boolean tiempoValido = false;
 
         while (!tiempoValido) {
-            System.out.println("Ingrese el tiempo del caballo numero " + getNumeroCaballo() + " (en formato minutos:segundos:milisegundos):");
+            System.out.println("Ingrese el tiempo del caballo numero " + numero + " (en formato minutos:segundos:milisegundos):");
             tiempoCarrera = scann.nextLine();
 
             if (tiempoCarrera.matches("\\d{1,2}:\\d{1,2}:\\d{1,3}")) {
                 long tiempoEnMs = convertirATiempoEnMs(tiempoCarrera);
-                if (tiempoEnMs <= 3600000) {
+                if (tiempoEnMs <= 3600000) { 
                     tiempoValido = true;
                     System.out.println("Tiempo registrado.");
                 } else {
@@ -111,9 +117,9 @@ public class CaballoCarrera extends Caballo {
             }
         }
 
-        Caballo nuevoCaballo = new Caballo(nombre, edad, raza, sexo, color, propietario, numero);
+        CaballoCarrera nuevoCaballo = new CaballoCarrera(numero, nombre, edad, raza, sexo, color, propietario);
         caballosRegistrados.add(nuevoCaballo);
-        caballosEnCarrera.add(new CaballoCarrera(nombre, edad, raza, sexo, color, propietario, numero));
+        caballosEnCarrera.add(nuevoCaballo);
         System.out.println("Caballo registrado exitosamente.");
     }
 
@@ -136,7 +142,7 @@ public class CaballoCarrera extends Caballo {
 
         boolean encontrado = false;
         for (CaballoCarrera carrera : caballosEnCarrera) {
-            if (carrera.getNumeroCaballo() == numeroTiempo) {
+            if (carrera.getNumero() == numeroTiempo) {
                 carrera.registrarTiempo();
                 encontrado = true;
                 break;
@@ -147,8 +153,7 @@ public class CaballoCarrera extends Caballo {
         }
     }
 
-    
-    public static void mostrarDetalles() {
+    public static void mostrarGanador() {
         if (caballosEnCarrera.isEmpty()) {
             System.out.println("No hay caballos en la carrera.");
         } else {
@@ -156,12 +161,12 @@ public class CaballoCarrera extends Caballo {
             if (ganador != null) {
                 Caballo caballoGanador = null;
                 for (Caballo caballo : caballosRegistrados) {
-                    if (caballo.getNumeroCaballo() == ganador.getNumeroCaballo()) {
+                    if (caballo.getNumeroCaballo() == ganador.getNumero()) {
                         caballoGanador = caballo;
                         break;
                     }
                 }
-                System.out.println("El ganador es el caballo numero " + ganador.getNumeroCaballo() + " de color " + (caballoGanador != null ? caballoGanador.getColorCaballo() : "desconocido") + " con un tiempo de: " + ganador.getTiempoCarrera());
+                System.out.println("El ganador es el caballo numero " + ganador.getNumero() + " de color " + (caballoGanador != null ? caballoGanador.getColorCaballo() : "desconocido") + " con un tiempo de: " + ganador.getTiempoCarrera());
             } else {
                 System.out.println("No hay tiempos registrados.");
             }
@@ -190,5 +195,16 @@ public class CaballoCarrera extends Caballo {
         int segundos = Integer.parseInt(partes[1]);
         int milisegundos = Integer.parseInt(partes[2]);
         return (minutos * 60000) + (segundos * 1000) + milisegundos;
+    }
+
+    public static void mostrarTodosCaballos() {
+        if (caballosRegistrados.isEmpty()) {
+            System.out.println("No hay caballos registrados.");
+        } else {
+            System.out.println("Lista de caballos registrados:");
+            for (Caballo caballo : caballosRegistrados) {
+                caballo.mostrarDetalles();
+            }
+        }
     }
 }
