@@ -27,17 +27,23 @@ public class CaballoCarrera {
         boolean tiempoValido = false;
 
         while (!tiempoValido) {
-            System.out.println("Ingrese el tiempo del caballo número " + numero + " (en formato minutos:segundos:milisegundos):");
+            System.out.println("Ingrese el tiempo del caballo numero " + numero + " (en formato minutos:segundos:milisegundos):");
             tiempoCarrera = scann.nextLine();
 
             if (tiempoCarrera.matches("\\d{1,2}:\\d{1,2}:\\d{1,3}")) {
-                tiempoValido = true;
-                System.out.println("Tiempo registrado.");
+                long tiempoEnMs = convertirATiempoEnMs(tiempoCarrera);
+                if (tiempoEnMs <= 3600000) { 
+                    tiempoValido = true;
+                    System.out.println("Tiempo registrado.");
+                } else {
+                    System.out.println("El tiempo no puede ser mayor a 1 hora.");
+                }
             } else {
-                System.out.println("Formato de tiempo inválido, ingrese el tiempo en el formato correcto (1:30:500).");
+                System.out.println("Formato de tiempo invalido, ingrese el tiempo en el formato correcto (1:30:500).");
             }
         }
     }
+
 
     public static void registrarCaballo() {
         Scanner scann = new Scanner(System.in);
@@ -70,7 +76,7 @@ public class CaballoCarrera {
         System.out.println("Ingrese el sexo del caballo (Macho/Hembra):");
         String sexo = scann.nextLine();
         while (!sexo.equalsIgnoreCase("Macho") && !sexo.equalsIgnoreCase("Hembra")) {
-            System.out.println("Entrada inválida, ingrese el sexo del caballo (Macho/Hembra):");
+            System.out.println("Entrada invalida, ingrese el sexo del caballo (Macho/Hembra):");
             sexo = scann.nextLine();
         }
         System.out.println("Ingrese el color del caballo:");
@@ -125,7 +131,7 @@ public class CaballoCarrera {
             try {
                 numeroTiempo = Integer.parseInt(scann.nextLine());
                 if (numeroTiempo <= 0) {
-                    System.out.println("Por favor, ingrese un número positivo para el numero del caballo.");
+                    System.out.println("Por favor, ingrese un numero positivo para el numero del caballo.");
                 } else {
                     break;
                 }
@@ -191,3 +197,4 @@ public class CaballoCarrera {
         return (minutos * 60000) + (segundos * 1000) + milisegundos;
     }
 }
+
