@@ -40,7 +40,7 @@ public class Laboratorio2ProgramacionPares {
                     CaballoCarrera.ingresarTiempo();
                     break;
                 case 3:
-                    CaballoCarrera.mostrarGanador();
+                    CaballoCarrera.mostrarDetalles();
                     break;
                 case 4:
                     System.out.println("Saliendo del programa...");

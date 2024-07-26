@@ -3,19 +3,14 @@ package com.mycompany.laboratorio2programacionpares;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class CaballoCarrera {
-    private int numero;
+public class CaballoCarrera extends Caballo {
     private String tiempoCarrera;
 
     private static ArrayList<Caballo> caballosRegistrados = new ArrayList<>();
     private static ArrayList<CaballoCarrera> caballosEnCarrera = new ArrayList<>();
 
-    public CaballoCarrera(int numero) {
-        this.numero = numero;
-    }
-
-    public int getNumero() {
-        return numero;
+    public CaballoCarrera(String nombreCaballo, int edadCaballo, String razaCaballo, String sexoCaballo, String colorCaballo, String propietarioCaballo, int numeroCaballo) {
+        super(nombreCaballo, edadCaballo, razaCaballo, sexoCaballo, colorCaballo, propietarioCaballo, numeroCaballo);
     }
 
     public String getTiempoCarrera() {
@@ -27,12 +22,12 @@ public class CaballoCarrera {
         boolean tiempoValido = false;
 
         while (!tiempoValido) {
-            System.out.println("Ingrese el tiempo del caballo numero " + numero + " (en formato minutos:segundos:milisegundos):");
+            System.out.println("Ingrese el tiempo del caballo numero " + getNumeroCaballo() + " (en formato minutos:segundos:milisegundos):");
             tiempoCarrera = scann.nextLine();
 
             if (tiempoCarrera.matches("\\d{1,2}:\\d{1,2}:\\d{1,3}")) {
                 long tiempoEnMs = convertirATiempoEnMs(tiempoCarrera);
-                if (tiempoEnMs <= 3600000) { 
+                if (tiempoEnMs <= 3600000) {
                     tiempoValido = true;
                     System.out.println("Tiempo registrado.");
                 } else {
@@ -43,7 +38,6 @@ public class CaballoCarrera {
             }
         }
     }
-
 
     public static void registrarCaballo() {
         Scanner scann = new Scanner(System.in);
@@ -119,7 +113,7 @@ public class CaballoCarrera {
 
         Caballo nuevoCaballo = new Caballo(nombre, edad, raza, sexo, color, propietario, numero);
         caballosRegistrados.add(nuevoCaballo);
-        caballosEnCarrera.add(new CaballoCarrera(numero));
+        caballosEnCarrera.add(new CaballoCarrera(nombre, edad, raza, sexo, color, propietario, numero));
         System.out.println("Caballo registrado exitosamente.");
     }
 
@@ -142,7 +136,7 @@ public class CaballoCarrera {
 
         boolean encontrado = false;
         for (CaballoCarrera carrera : caballosEnCarrera) {
-            if (carrera.getNumero() == numeroTiempo) {
+            if (carrera.getNumeroCaballo() == numeroTiempo) {
                 carrera.registrarTiempo();
                 encontrado = true;
                 break;
@@ -153,7 +147,8 @@ public class CaballoCarrera {
         }
     }
 
-    public static void mostrarGanador() {
+    
+    public static void mostrarDetalles() {
         if (caballosEnCarrera.isEmpty()) {
             System.out.println("No hay caballos en la carrera.");
         } else {
@@ -161,12 +156,12 @@ public class CaballoCarrera {
             if (ganador != null) {
                 Caballo caballoGanador = null;
                 for (Caballo caballo : caballosRegistrados) {
-                    if (caballo.getNumeroCaballo() == ganador.getNumero()) {
+                    if (caballo.getNumeroCaballo() == ganador.getNumeroCaballo()) {
                         caballoGanador = caballo;
                         break;
                     }
                 }
-                System.out.println("El ganador es el caballo numero " + ganador.getNumero() + " de color " + (caballoGanador != null ? caballoGanador.getColorCaballo() : "desconocido") + " con un tiempo de: " + ganador.getTiempoCarrera());
+                System.out.println("El ganador es el caballo numero " + ganador.getNumeroCaballo() + " de color " + (caballoGanador != null ? caballoGanador.getColorCaballo() : "desconocido") + " con un tiempo de: " + ganador.getTiempoCarrera());
             } else {
                 System.out.println("No hay tiempos registrados.");
             }
@@ -197,4 +192,3 @@ public class CaballoCarrera {
         return (minutos * 60000) + (segundos * 1000) + milisegundos;
     }
 }
-
